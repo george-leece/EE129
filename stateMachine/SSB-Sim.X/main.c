@@ -16,6 +16,17 @@
 #include "Leds.h"
 #include "Buttons.h"
 
+#define 
+
+typedef enum {
+    IDLE,
+    WAIT,
+    ACTIVE
+}topState;
+
+typedef enum {
+    
+};
 /*
  * 
  */
@@ -26,6 +37,7 @@ int main()
     LEDS_INIT();
     AdcInit();
     ButtonsInit();
+    
     
     // initialize timers and timer ISRs:
     // <editor-fold defaultstate="collapsed" desc="TIMER SETUP">
@@ -57,3 +69,27 @@ int main()
     }
 }
 
+/*The 5hz timer is used to update the free-running timer and to generate TIMER_TICK events*/
+void __ISR(_TIMER_3_VECTOR, ipl4auto) TimerInterrupt5Hz(void)
+{
+
+    // Clear the interrupt flag.
+    IFS0CLR = 1 << 12;
+    // The global clock used for measuring time and is incremented every .2 seconds
+    globalTime++;
+    TIMER_TICK = TRUE;
+
+    
+}
+
+/*The 100hz timer is used to check for button and ADC events*/
+void __ISR(_TIMER_2_VECTOR, ipl4auto) TimerInterrupt100Hz(void)
+{  
+    
+    // Clear the interrupt flag.
+    IFS0CLR = 1 << 8;
+    // ISR to check if a button was pressed or the adc potentiometer changed and checks every .01 seconds
+    button = ButtonsCheckEvents();
+    ADC_event = AdcChanged();
+    
+}
