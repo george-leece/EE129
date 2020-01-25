@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c /home/gleece/Desktop/ECE167/src/BOARD.c
+SOURCEFILES_QUOTED_IF_SPACED=/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c /home/gleece/Desktop/ECE167/src/BOARD.c /home/gleece/Desktop/ECE167/src/AD.c /home/gleece/Desktop/ECE167/src/Ascii.c /home/gleece/Desktop/ECE167/src/Oled.c /home/gleece/Desktop/ECE167/src/OledDriver.c /home/gleece/Desktop/ECE167/src/serial.c /home/gleece/Desktop/ECE167/src/timers.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1806984808/main.o ${OBJECTDIR}/_ext/388216294/BOARD.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1806984808/main.o.d ${OBJECTDIR}/_ext/388216294/BOARD.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1806984808/main.o ${OBJECTDIR}/_ext/388216294/BOARD.o ${OBJECTDIR}/_ext/388216294/AD.o ${OBJECTDIR}/_ext/388216294/Ascii.o ${OBJECTDIR}/_ext/388216294/Oled.o ${OBJECTDIR}/_ext/388216294/OledDriver.o ${OBJECTDIR}/_ext/388216294/serial.o ${OBJECTDIR}/_ext/388216294/timers.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1806984808/main.o.d ${OBJECTDIR}/_ext/388216294/BOARD.o.d ${OBJECTDIR}/_ext/388216294/AD.o.d ${OBJECTDIR}/_ext/388216294/Ascii.o.d ${OBJECTDIR}/_ext/388216294/Oled.o.d ${OBJECTDIR}/_ext/388216294/OledDriver.o.d ${OBJECTDIR}/_ext/388216294/serial.o.d ${OBJECTDIR}/_ext/388216294/timers.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1806984808/main.o ${OBJECTDIR}/_ext/388216294/BOARD.o
+OBJECTFILES=${OBJECTDIR}/_ext/1806984808/main.o ${OBJECTDIR}/_ext/388216294/BOARD.o ${OBJECTDIR}/_ext/388216294/AD.o ${OBJECTDIR}/_ext/388216294/Ascii.o ${OBJECTDIR}/_ext/388216294/Oled.o ${OBJECTDIR}/_ext/388216294/OledDriver.o ${OBJECTDIR}/_ext/388216294/serial.o ${OBJECTDIR}/_ext/388216294/timers.o
 
 # Source Files
-SOURCEFILES=/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c /home/gleece/Desktop/ECE167/src/BOARD.c
+SOURCEFILES=/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c /home/gleece/Desktop/ECE167/src/BOARD.c /home/gleece/Desktop/ECE167/src/AD.c /home/gleece/Desktop/ECE167/src/Ascii.c /home/gleece/Desktop/ECE167/src/Oled.c /home/gleece/Desktop/ECE167/src/OledDriver.c /home/gleece/Desktop/ECE167/src/serial.c /home/gleece/Desktop/ECE167/src/timers.c
 
 
 
@@ -111,26 +111,98 @@ ${OBJECTDIR}/_ext/1806984808/main.o: /home/gleece/SSB/EE129/stateMachine/SSB-Sim
 	@${MKDIR} "${OBJECTDIR}/_ext/1806984808" 
 	@${RM} ${OBJECTDIR}/_ext/1806984808/main.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1806984808/main.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1806984808/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -Wall -MMD -MF "${OBJECTDIR}/_ext/1806984808/main.o.d" -o ${OBJECTDIR}/_ext/1806984808/main.o /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1806984808/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/1806984808/main.o.d" -o ${OBJECTDIR}/_ext/1806984808/main.o /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
 	
 ${OBJECTDIR}/_ext/388216294/BOARD.o: /home/gleece/Desktop/ECE167/src/BOARD.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
 	@${RM} ${OBJECTDIR}/_ext/388216294/BOARD.o.d 
 	@${RM} ${OBJECTDIR}/_ext/388216294/BOARD.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/BOARD.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -Wall -MMD -MF "${OBJECTDIR}/_ext/388216294/BOARD.o.d" -o ${OBJECTDIR}/_ext/388216294/BOARD.o /home/gleece/Desktop/ECE167/src/BOARD.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/BOARD.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/BOARD.o.d" -o ${OBJECTDIR}/_ext/388216294/BOARD.o /home/gleece/Desktop/ECE167/src/BOARD.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/388216294/AD.o: /home/gleece/Desktop/ECE167/src/AD.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
+	@${RM} ${OBJECTDIR}/_ext/388216294/AD.o.d 
+	@${RM} ${OBJECTDIR}/_ext/388216294/AD.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/AD.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/AD.o.d" -o ${OBJECTDIR}/_ext/388216294/AD.o /home/gleece/Desktop/ECE167/src/AD.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/388216294/Ascii.o: /home/gleece/Desktop/ECE167/src/Ascii.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
+	@${RM} ${OBJECTDIR}/_ext/388216294/Ascii.o.d 
+	@${RM} ${OBJECTDIR}/_ext/388216294/Ascii.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/Ascii.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/Ascii.o.d" -o ${OBJECTDIR}/_ext/388216294/Ascii.o /home/gleece/Desktop/ECE167/src/Ascii.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/388216294/Oled.o: /home/gleece/Desktop/ECE167/src/Oled.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
+	@${RM} ${OBJECTDIR}/_ext/388216294/Oled.o.d 
+	@${RM} ${OBJECTDIR}/_ext/388216294/Oled.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/Oled.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/Oled.o.d" -o ${OBJECTDIR}/_ext/388216294/Oled.o /home/gleece/Desktop/ECE167/src/Oled.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/388216294/OledDriver.o: /home/gleece/Desktop/ECE167/src/OledDriver.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
+	@${RM} ${OBJECTDIR}/_ext/388216294/OledDriver.o.d 
+	@${RM} ${OBJECTDIR}/_ext/388216294/OledDriver.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/OledDriver.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/OledDriver.o.d" -o ${OBJECTDIR}/_ext/388216294/OledDriver.o /home/gleece/Desktop/ECE167/src/OledDriver.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/388216294/serial.o: /home/gleece/Desktop/ECE167/src/serial.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
+	@${RM} ${OBJECTDIR}/_ext/388216294/serial.o.d 
+	@${RM} ${OBJECTDIR}/_ext/388216294/serial.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/serial.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/serial.o.d" -o ${OBJECTDIR}/_ext/388216294/serial.o /home/gleece/Desktop/ECE167/src/serial.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/388216294/timers.o: /home/gleece/Desktop/ECE167/src/timers.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
+	@${RM} ${OBJECTDIR}/_ext/388216294/timers.o.d 
+	@${RM} ${OBJECTDIR}/_ext/388216294/timers.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/timers.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/timers.o.d" -o ${OBJECTDIR}/_ext/388216294/timers.o /home/gleece/Desktop/ECE167/src/timers.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
 	
 else
 ${OBJECTDIR}/_ext/1806984808/main.o: /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1806984808" 
 	@${RM} ${OBJECTDIR}/_ext/1806984808/main.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1806984808/main.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/1806984808/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -Wall -MMD -MF "${OBJECTDIR}/_ext/1806984808/main.o.d" -o ${OBJECTDIR}/_ext/1806984808/main.o /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1806984808/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/1806984808/main.o.d" -o ${OBJECTDIR}/_ext/1806984808/main.o /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
 	
 ${OBJECTDIR}/_ext/388216294/BOARD.o: /home/gleece/Desktop/ECE167/src/BOARD.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
 	@${RM} ${OBJECTDIR}/_ext/388216294/BOARD.o.d 
 	@${RM} ${OBJECTDIR}/_ext/388216294/BOARD.o 
-	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/BOARD.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -Wall -MMD -MF "${OBJECTDIR}/_ext/388216294/BOARD.o.d" -o ${OBJECTDIR}/_ext/388216294/BOARD.o /home/gleece/Desktop/ECE167/src/BOARD.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/BOARD.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/BOARD.o.d" -o ${OBJECTDIR}/_ext/388216294/BOARD.o /home/gleece/Desktop/ECE167/src/BOARD.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/388216294/AD.o: /home/gleece/Desktop/ECE167/src/AD.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
+	@${RM} ${OBJECTDIR}/_ext/388216294/AD.o.d 
+	@${RM} ${OBJECTDIR}/_ext/388216294/AD.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/AD.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/AD.o.d" -o ${OBJECTDIR}/_ext/388216294/AD.o /home/gleece/Desktop/ECE167/src/AD.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/388216294/Ascii.o: /home/gleece/Desktop/ECE167/src/Ascii.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
+	@${RM} ${OBJECTDIR}/_ext/388216294/Ascii.o.d 
+	@${RM} ${OBJECTDIR}/_ext/388216294/Ascii.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/Ascii.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/Ascii.o.d" -o ${OBJECTDIR}/_ext/388216294/Ascii.o /home/gleece/Desktop/ECE167/src/Ascii.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/388216294/Oled.o: /home/gleece/Desktop/ECE167/src/Oled.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
+	@${RM} ${OBJECTDIR}/_ext/388216294/Oled.o.d 
+	@${RM} ${OBJECTDIR}/_ext/388216294/Oled.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/Oled.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/Oled.o.d" -o ${OBJECTDIR}/_ext/388216294/Oled.o /home/gleece/Desktop/ECE167/src/Oled.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/388216294/OledDriver.o: /home/gleece/Desktop/ECE167/src/OledDriver.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
+	@${RM} ${OBJECTDIR}/_ext/388216294/OledDriver.o.d 
+	@${RM} ${OBJECTDIR}/_ext/388216294/OledDriver.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/OledDriver.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/OledDriver.o.d" -o ${OBJECTDIR}/_ext/388216294/OledDriver.o /home/gleece/Desktop/ECE167/src/OledDriver.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/388216294/serial.o: /home/gleece/Desktop/ECE167/src/serial.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
+	@${RM} ${OBJECTDIR}/_ext/388216294/serial.o.d 
+	@${RM} ${OBJECTDIR}/_ext/388216294/serial.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/serial.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/serial.o.d" -o ${OBJECTDIR}/_ext/388216294/serial.o /home/gleece/Desktop/ECE167/src/serial.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/388216294/timers.o: /home/gleece/Desktop/ECE167/src/timers.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/388216294" 
+	@${RM} ${OBJECTDIR}/_ext/388216294/timers.o.d 
+	@${RM} ${OBJECTDIR}/_ext/388216294/timers.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/388216294/timers.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/388216294/timers.o.d" -o ${OBJECTDIR}/_ext/388216294/timers.o /home/gleece/Desktop/ECE167/src/timers.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
 	
 endif
 

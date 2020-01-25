@@ -16,20 +16,102 @@
 #include "Leds.h"
 #include "Buttons.h"
 
-#define 
+#define WAIT_TIMEOUT 50
 
 typedef enum {
     IDLE,
     WAIT,
     ACTIVE
-}topState;
+} topState;
 
 typedef enum {
-    
-};
+    CLASSIFY,
+    CONTAMINATION,
+    TRASH,
+    GLASS,
+    RECYCLE
+} wmState;
+
+typedef enum {
+    FORWARD,
+    REVERSE,
+    DROP
+} lmrState;
+
+typedef struct {
+    topState topState;
+    wmState wmState;
+    lmrState lmrState;
+    uint32_t globalTime;
+    uint8_t button;
+    uint8_t lock;
+    uint32_t waitTimeStart;
+//    uint32_t
+} SSB;
+
+SSB ssb = {};
+
+static int ADC_event = 0; // to flag a change in the ADC
+static int TIMER_TICK = 0; // used to flag the global timer
+char display[100]; // used to print on the OLED
+
 /*
  * 
  */
+void updateOLED(SSB ssb)
+{
+    switch (ssb.topState) {
+    case IDLE:
+        sprintf(display, "IDLE");
+        OledClear(OLED_COLOR_BLACK); // clears the OLED to remove any lingering characters from previous prints
+        OledDrawString(display);
+        OledUpdate(); // prints the new string
+        break;
+    case WAIT: //
+        sprintf(display, "WAITING");
+        OledClear(OLED_COLOR_BLACK); // Removes any lingering characters
+        OledDrawString(display);
+        OledUpdate(); // Prints the new OLED display
+        break;
+    case ACTIVE: // 
+        sprintf(display, "ACTIVE");
+        OledClear(OLED_COLOR_BLACK); //Removes any lingering characters
+        OledDrawString(display);
+        OledUpdate(); // Prints the new OLED display
+        break;
+    }
+}
+
+void runTopSM(void)
+{
+
+    //write your SM logic here.
+    switch(ssb.topState){
+    case IDLE:
+        if(ssb.button == BUTTON_EVENT_4UP){
+            ssb.topState = WAIT;
+            ssb.waitTimeStart = ssb.globalTime; 
+        }
+        updateOLED(ssb);
+        break;
+    case WAIT:
+        if(ssb.globalTime-ssb.waitTimeStart == WAIT_TIMEOUT){
+            ssb.topState = IDLE;
+        } else if(ssb.button == BUTTON_EVENT_3UP){
+            ssb.topState = ACTIVE;
+        }
+        updateOLED(ssb);
+        break;
+    case ACTIVE:
+        if(ssb.button == BUTTON_EVENT_2UP){
+            ssb.topState = WAIT;
+            ssb.waitTimeStart = ssb.globalTime;
+        }
+        updateOLED(ssb);
+        break;
+    }
+}
+
 int main()
 {
     BOARD_Init();
@@ -37,8 +119,8 @@ int main()
     LEDS_INIT();
     AdcInit();
     ButtonsInit();
-    
-    
+
+
     // initialize timers and timer ISRs:
     // <editor-fold defaultstate="collapsed" desc="TIMER SETUP">
 
@@ -63,9 +145,11 @@ int main()
     INTEnable(INT_T3, INT_ENABLED);
 
     // </editor-fold>
-    
-    while(1){
-        
+
+    while (1) {
+        if(ssb.button && ssb.lock==0){
+            
+        }
     }
 }
 
@@ -76,20 +160,21 @@ void __ISR(_TIMER_3_VECTOR, ipl4auto) TimerInterrupt5Hz(void)
     // Clear the interrupt flag.
     IFS0CLR = 1 << 12;
     // The global clock used for measuring time and is incremented every .2 seconds
-    globalTime++;
+    ssb.globalTime++;
     TIMER_TICK = TRUE;
 
-    
+
 }
 
 /*The 100hz timer is used to check for button and ADC events*/
 void __ISR(_TIMER_2_VECTOR, ipl4auto) TimerInterrupt100Hz(void)
-{  
-    
+{
+
     // Clear the interrupt flag.
     IFS0CLR = 1 << 8;
     // ISR to check if a button was pressed or the adc potentiometer changed and checks every .01 seconds
-    button = ButtonsCheckEvents();
+    ssb.button = ButtonsCheckEvents();
+    ssb.lock = 
     ADC_event = AdcChanged();
-    
+
 }
