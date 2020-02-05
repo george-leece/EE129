@@ -18,14 +18,19 @@
 #include <Buttons.h>
 
 #define WAIT_TIMEOUT 50
+#define DROP_TIMEOUT 10
 #define PRESS 5
-#define NONE 1
+#define NO_ITEM 1
+#define ITEM 2
 #define WASTE 0
 #define ALUMINUM 1
 #define GLASS 2
 #define PLASTIC 3
-#define CLEAN 0
-#define DIRTY 1
+#define CLEAN 1
+#define DIRTY 0
+#define BIN_1 20
+#define BIN_2 30
+#define BIN_3 40
 
 int i;
 
@@ -44,6 +49,7 @@ typedef enum {
 } wmState;
 
 typedef enum {
+    LMRINIT,
     FORWARD,
     REVERSE,
     DROP
@@ -54,6 +60,7 @@ typedef struct {
     wmState wmState;
     lmrState lmrState;
     uint32_t globalTime;
+    uint32_t lmrtime;
     uint32_t buttonpress;
     uint8_t button;
     uint8_t event;
@@ -94,37 +101,6 @@ void updateOLEDTop(SSB ssb)
     }
 }
 
-//void runTopSM(void)
-//{
-//
-//    //write your SM logic here.
-//    switch(ssb.topState){
-//    case IDLE:
-//        if(ssb.button == BUTTON_EVENT_4UP){
-//            ssb.topState = WAIT;
-//            ssb.waitTimeStart = ssb.globalTime; 
-//        }
-//        updateOLEDTop(ssb);
-//        break;
-//    case WAIT:
-//        if(ssb.globalTime-ssb.waitTimeStart == WAIT_TIMEOUT){
-//            ssb.topState = IDLE;
-//        } else if(ssb.button == BUTTON_EVENT_4UP){
-//            ssb.topState = ACTIVE;
-//        }
-//        updateOLEDTop(ssb);
-//        break;
-//    case ACTIVE:
-//        if(ssb.event == NONE){
-//            ssb.topState = WAIT;
-//            ssb.waitTimeStart = ssb.globalTime;
-//        }
-//        updateOLEDTop(ssb);
-//        runwmState();
-//        break;
-//    }
-//}
-
 void updateOLEDWM(SSB ssb)
 {
     switch (ssb.wmState) {
@@ -155,13 +131,82 @@ void updateOLEDWM(SSB ssb)
     }
 }
 
+void updateOLEDLMR(SSB ssb)
+{
+    switch (ssb.lmrState) {
+    case FORWARD:
+        sprintf(display, "LMR Level\nState: FORWARD\n");
+        OledClear(OLED_COLOR_BLACK); // clears the OLED to remove any lingering characters from previous prints
+        OledDrawString(display);
+        OledUpdate(); // prints the new string
+        break;
+    case DROP:
+        sprintf(display, "LMR Level\nState: DROP");
+        OledClear(OLED_COLOR_BLACK); // Removes any lingering characters
+        OledDrawString(display);
+        OledUpdate(); // Prints the new OLED display
+        break;
+    case REVERSE: //
+        sprintf(display, "LMR Level\nState: REVERSE");
+        OledClear(OLED_COLOR_BLACK); // Removes any lingering characters
+        OledDrawString(display);
+        OledUpdate(); // Prints the new OLED display
+        break;
+    }
+}
+void runlmrSM(void)
+{
+    switch(ssb.lmrState){
+    case LMRINIT:
+        ssb.lmrState=FORWARD;
+        ssb.lmrtime = ssb.globalTime;
+        updateOLEDLMR(ssb);
+        break;
+    case FORWARD:
+        if(ssb.item==ALUMINUM && (ssb.globalTime-ssb.lmrtime > BIN_1)){
+            ssb.lmrState=DROP;
+            ssb.lmrtime=ssb.globalTime;
+            updateOLEDLMR(ssb);
+        } else if(ssb.item==GLASS && (ssb.globalTime-ssb.lmrtime>BIN_2)){
+            ssb.lmrState=DROP;
+            ssb.lmrtime=ssb.globalTime;
+            updateOLEDLMR(ssb);
+        } else if(ssb.item==PLASTIC && (ssb.globalTime-ssb.lmrtime>BIN_3)){
+            ssb.lmrState=DROP;
+            ssb.lmrtime=ssb.globalTime;
+            updateOLEDLMR(ssb);
+        }
+        break;
+    case DROP:
+        if(ssb.globalTime-ssb.lmrtime>DROP_TIMEOUT){
+            ssb.lmrState=REVERSE;
+            updateOLEDLMR(ssb);
+        }
+        break;
+    case REVERSE:
+        if(ssb.item==ALUMINUM && (ssb.globalTime-ssb.lmrtime > BIN_1)){
+            ssb.lmrState=LMRINIT;
+            ssb.wmState=WMINIT;
+            ssb.event=NONE;
+            updateOLEDLMR(ssb);
+        } else if(ssb.item==GLASS && (ssb.globalTime-ssb.lmrtime>BIN_2)){
+            ssb.lmrState=LMRINIT;
+            ssb.wmState=WMINIT;
+            ssb.event=NONE;
+            updateOLEDLMR(ssb);
+        } else if(ssb.item==PLASTIC && (ssb.globalTime-ssb.lmrtime>BIN_3)){
+            ssb.lmrState=LMRINIT;
+            ssb.wmState=WMINIT;
+            ssb.event=NONE;
+            updateOLEDLMR(ssb);
+        }
+        break;
+    }
+}
 void runwmSm(void)
 {
     switch (ssb.wmState) {
     case WMINIT:
-//        while(i<20){
-//            i++;
-//        }
         ssb.wmState=CLASSIFY;
         ssb.button=FALSE;
         updateOLEDWM(ssb);
@@ -209,6 +254,9 @@ void runwmSm(void)
         }
         break;
     case RECYCLE:
+        if(ssb.item>WASTE && ssb.contamination>DIRTY){
+            runlmrSM();
+        }
         break;
 
     }
@@ -228,11 +276,12 @@ void runTopSM(void)
     case WAIT:
         if (ssb.globalTime - ssb.waitTimeStart == WAIT_TIMEOUT) {
             ssb.topState = IDLE;
+            updateOLEDTop(ssb);
         } else if (ssb.button == BUTTON_EVENT_3UP) {
             ssb.topState = ACTIVE;
             ssb.button = FALSE;
+//            updateOLEDTop(ssb);
         }
-        updateOLEDTop(ssb);
         break;
     case ACTIVE:
         if (ssb.event == NONE) {
@@ -246,9 +295,8 @@ void runTopSM(void)
 //        ssb.buttonpress = ssb.globalTime;
         //        else if(ssb.item)
 //                updateOLEDTop(ssb);
-        if(ssb.button){
+//        if(ssb.button){
             runwmSm();
-        }
         
         break;
     }
