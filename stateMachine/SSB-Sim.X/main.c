@@ -10,70 +10,51 @@
 #include <stdlib.h>
 #include <xc.h>
 #include "plib.h"
-#include "Adc.h"
-#include "BOARD.h"
-#include "Oled.h"
-#include "timers.h"
-#include "Leds.h"
-#include <Buttons.h>
+#include <BOARD.h>
+//#include "TopSM.h"
+#include "configure.h"
 
-#define WAIT_TIMEOUT 50
-#define DROP_TIMEOUT 10
-#define PRESS 5
-#define NO_ITEM 1
-#define ITEM 2
-#define WASTE 0
-#define ALUMINUM 1
-#define GLASS 2
-#define PLASTIC 3
-#define CLEAN 1
-#define DIRTY 0
-#define BIN_1 20
-#define BIN_2 30
-#define BIN_3 40
 
-int i;
+//typedef enum {
+//    IDLE,
+//    WAIT,
+//    ACTIVE
+//} topState;
 
-typedef enum {
-    IDLE,
-    WAIT,
-    ACTIVE
-} topState;
+//typedef enum {
+//    WMINIT,
+//    CLASSIFY,
+//    TRASH,
+//    RECYCLE,
+//    CONTAMINATION
+//} wmState;
+//
+//typedef enum {
+//    LMRINIT,
+//    FORWARD,
+//    REVERSE,
+//    DROP
+//} lmrState;
 
-typedef enum {
-    WMINIT,
-    CLASSIFY,
-    TRASH,
-    RECYCLE,
-    CONTAMINATION
-} wmState;
+//typedef struct {
+//    topState topState;
+//    wmState wmState;
+//    lmrState lmrState;
+//    uint32_t globalTime;
+//    uint32_t lmrtime;
+//    uint32_t buttonpress;
+//    uint8_t button;
+//    uint8_t event;
+//    uint8_t item;
+//    uint8_t contamination;
+//    uint8_t lock;
+//    uint32_t waitTimeStart;
+//    //    uint32_t
+//} SSB;
 
-typedef enum {
-    LMRINIT,
-    FORWARD,
-    REVERSE,
-    DROP
-} lmrState;
+static SSB ssb = {};
 
-typedef struct {
-    topState topState;
-    wmState wmState;
-    lmrState lmrState;
-    uint32_t globalTime;
-    uint32_t lmrtime;
-    uint32_t buttonpress;
-    uint8_t button;
-    uint8_t event;
-    uint8_t item;
-    uint8_t contamination;
-    uint8_t lock;
-    uint32_t waitTimeStart;
-    //    uint32_t
-} SSB;
-
-SSB ssb = {};
-
-static int ADC_event = 0; // to flag a change in the ADC
+//int ADC_event = 0; // to flag a change in the ADC
 static int TIMER_TICK = 0; // used to flag the global timer
 char display[100]; // used to print on the OLED
 
@@ -154,80 +135,82 @@ void updateOLEDLMR(SSB ssb)
         break;
     }
 }
+
 void runlmrSM(void)
 {
-    switch(ssb.lmrState){
+    switch (ssb.lmrState) {
     case LMRINIT:
-        ssb.lmrState=FORWARD;
+        ssb.lmrState = FORWARD;
         ssb.lmrtime = ssb.globalTime;
         updateOLEDLMR(ssb);
         break;
     case FORWARD:
-        if(ssb.item==ALUMINUM && (ssb.globalTime-ssb.lmrtime > BIN_1)){
-            ssb.lmrState=DROP;
-            ssb.lmrtime=ssb.globalTime;
+        if (ssb.item == ALUMINUM && (ssb.globalTime - ssb.lmrtime > BIN_1)) {
+            ssb.lmrState = DROP;
+            ssb.lmrtime = ssb.globalTime;
             updateOLEDLMR(ssb);
-        } else if(ssb.item==GLASS && (ssb.globalTime-ssb.lmrtime>BIN_2)){
-            ssb.lmrState=DROP;
-            ssb.lmrtime=ssb.globalTime;
+        } else if (ssb.item == GLASS && (ssb.globalTime - ssb.lmrtime > BIN_2)) {
+            ssb.lmrState = DROP;
+            ssb.lmrtime = ssb.globalTime;
             updateOLEDLMR(ssb);
-        } else if(ssb.item==PLASTIC && (ssb.globalTime-ssb.lmrtime>BIN_3)){
-            ssb.lmrState=DROP;
-            ssb.lmrtime=ssb.globalTime;
+        } else if (ssb.item == PLASTIC && (ssb.globalTime - ssb.lmrtime > BIN_3)) {
+            ssb.lmrState = DROP;
+            ssb.lmrtime = ssb.globalTime;
             updateOLEDLMR(ssb);
         }
         break;
     case DROP:
-        if(ssb.globalTime-ssb.lmrtime>DROP_TIMEOUT){
-            ssb.lmrState=REVERSE;
+        if (ssb.globalTime - ssb.lmrtime > DROP_TIMEOUT) {
+            ssb.lmrState = REVERSE;
             updateOLEDLMR(ssb);
         }
         break;
     case REVERSE:
-        if(ssb.item==ALUMINUM && (ssb.globalTime-ssb.lmrtime > BIN_1)){
-            ssb.lmrState=LMRINIT;
-            ssb.wmState=WMINIT;
-            ssb.event=NONE;
+        if (ssb.item == ALUMINUM && (ssb.globalTime - ssb.lmrtime > BIN_1)) {
+            ssb.lmrState = LMRINIT;
+            ssb.wmState = WMINIT;
+            ssb.event = NO_ITEM;
             updateOLEDLMR(ssb);
-        } else if(ssb.item==GLASS && (ssb.globalTime-ssb.lmrtime>BIN_2)){
-            ssb.lmrState=LMRINIT;
-            ssb.wmState=WMINIT;
-            ssb.event=NONE;
+        } else if (ssb.item == GLASS && (ssb.globalTime - ssb.lmrtime > BIN_2)) {
+            ssb.lmrState = LMRINIT;
+            ssb.wmState = WMINIT;
+            ssb.event = NO_ITEM;
             updateOLEDLMR(ssb);
-        } else if(ssb.item==PLASTIC && (ssb.globalTime-ssb.lmrtime>BIN_3)){
-            ssb.lmrState=LMRINIT;
-            ssb.wmState=WMINIT;
-            ssb.event=NONE;
+        } else if (ssb.item == PLASTIC && (ssb.globalTime - ssb.lmrtime > BIN_3)) {
+            ssb.lmrState = LMRINIT;
+            ssb.wmState = WMINIT;
+            ssb.event = NO_ITEM;
             updateOLEDLMR(ssb);
         }
         break;
     }
 }
+
 void runwmSm(void)
 {
     switch (ssb.wmState) {
     case WMINIT:
-        ssb.wmState=CLASSIFY;
-        ssb.button=FALSE;
+        ssb.wmState = CLASSIFY;
         updateOLEDWM(ssb);
         break;
     case CLASSIFY:
-        if (ssb.button==BUTTON_EVENT_4DOWN) {
+        if (ssb.button == BUTTON_EVENT_4DOWN) {
+            ssb.wmtime = ssb.globalTime;
             ssb.item = TRASH;
             ssb.wmState = TRASH;
             ssb.button = FALSE;
             updateOLEDWM(ssb);
-        } else if (ssb.button==BUTTON_EVENT_3DOWN) {
+        } else if (ssb.button == BUTTON_EVENT_3DOWN) {
             ssb.item = ALUMINUM;
             ssb.wmState = CONTAMINATION;
             ssb.button = FALSE;
             updateOLEDWM(ssb);
-        } else if (ssb.button==BUTTON_EVENT_2DOWN) {
+        } else if (ssb.button == BUTTON_EVENT_2DOWN) {
             ssb.item = GLASS;
             ssb.wmState = CONTAMINATION;
             ssb.button = FALSE;
             updateOLEDWM(ssb);
-        } else if (ssb.button==BUTTON_EVENT_1DOWN) {
+        } else if (ssb.button == BUTTON_EVENT_1DOWN) {
             ssb.item = PLASTIC;
             ssb.wmState = CONTAMINATION;
             ssb.button = FALSE;
@@ -235,41 +218,47 @@ void runwmSm(void)
         }
         break;
     case TRASH:
-        ssb.wmState=WMINIT;
-        ssb.event=NONE;
-        ssb.button=FALSE;
-//        updateOLEDWM(ssb);
+        if ((ssb.globalTime - ssb.wmtime > TRASH_TIMEOUT)) {
+            ssb.wmState = WMINIT;
+            ssb.event = NO_ITEM;
+//            ssb.button = FALSE;
+//            updateOLEDWM(ssb);
+        }
         break;
     case CONTAMINATION:
-        if(ssb.button==BUTTON_EVENT_1DOWN){
-            ssb.wmState=RECYCLE;
-            ssb.contamination=CLEAN;
-            ssb.button=FALSE;
+        if (ssb.button == BUTTON_EVENT_1DOWN) {
+            ssb.wmState = RECYCLE;
+            ssb.contamination = CLEAN;
+            ssb.button = FALSE;
             updateOLEDWM(ssb);
-        } else if(ssb.button==BUTTON_EVENT_4DOWN){
-            ssb.wmState=TRASH;
-            ssb.contamination=DIRTY;
-            ssb.button=FALSE;
+        } else if (ssb.button == BUTTON_EVENT_4DOWN) {
+            ssb.wmState = TRASH;
+            ssb.wmtime = ssb.globalTime;
+            ssb.contamination = DIRTY;
+            ssb.button = FALSE;
             updateOLEDWM(ssb);
         }
         break;
     case RECYCLE:
-        if(ssb.item>WASTE && ssb.contamination>DIRTY){
+        if (ssb.item > WASTE && ssb.contamination > DIRTY) {
             runlmrSM();
         }
         break;
-
     }
 }
 
 void runTopSM(void)
 {
     switch (ssb.topState) {
+    case TOPINIT:
+        ssb.topState = IDLE;
+        updateOLEDTop(ssb);
+        break;
     case IDLE:
-        if (ssb.button == BUTTON_EVENT_4UP) {
+        if (ssb.button == BUTTON_EVENT_4DOWN) {
             ssb.topState = WAIT;
             ssb.waitTimeStart = ssb.globalTime;
-            ssb.button = FALSE;
+            ssb.button = BUTTON_EVENT_NONE;
         }
         updateOLEDTop(ssb);
         break;
@@ -277,27 +266,28 @@ void runTopSM(void)
         if (ssb.globalTime - ssb.waitTimeStart == WAIT_TIMEOUT) {
             ssb.topState = IDLE;
             updateOLEDTop(ssb);
-        } else if (ssb.button == BUTTON_EVENT_3UP) {
+        } else if (ssb.button == BUTTON_EVENT_3DOWN) {
             ssb.topState = ACTIVE;
-            ssb.button = FALSE;
+            ssb.button = BUTTON_EVENT_NONE;
 //            updateOLEDTop(ssb);
         }
         break;
     case ACTIVE:
-        if (ssb.event == NONE) {
-            updateOLEDTop(ssb);
+        runwmSm();
+        if (ssb.event == NO_ITEM) {
             ssb.topState = WAIT;
-            ssb.event=FALSE;
+            ssb.event = FALSE;
             ssb.waitTimeStart = ssb.globalTime;
+            updateOLEDTop(ssb);
         }
-//        ssb.button = FALSE;
-//        ssb.wmState=WMINIT;
-//        ssb.buttonpress = ssb.globalTime;
+        //        ssb.button = FALSE;
+        //        ssb.wmState=WMINIT;
+        //        ssb.buttonpress = top.globalTime;
         //        else if(ssb.item)
-//                updateOLEDTop(ssb);
-//        if(ssb.button){
-            runwmSm();
+        //                updateOLEDTop(ssb);
+        //        if(ssb.button){
         
+
         break;
     }
 }
@@ -339,6 +329,7 @@ int main()
     OledClear(OLED_COLOR_BLACK); //Removes any lingering characters
     OledDrawString(display);
     OledUpdate(); // Prints the new OLED display
+    ssb.topState = TOPINIT;
     while (1) {
         if (ssb.button || TIMER_TICK) {
             runTopSM();

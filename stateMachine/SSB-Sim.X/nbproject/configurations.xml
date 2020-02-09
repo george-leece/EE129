@@ -11,6 +11,9 @@
       <itemPath>/home/gleece/Desktop/ECE167/include/OledDriver.h</itemPath>
       <itemPath>/home/gleece/Desktop/ECE167/include/serial.h</itemPath>
       <itemPath>/home/gleece/Desktop/ECE167/include/timers.h</itemPath>
+      <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.h</itemPath>
+      <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/configure.h</itemPath>
+      <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/wmSM.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -21,6 +24,7 @@
                    projectFiles="true">
       <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c</itemPath>
       <itemPath>helloworld.c</itemPath>
+      <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -73,6 +77,32 @@
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
+      <item path="/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.c"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.h"
+            ex="true"
+            overriding="false">
+      </item>
+      <item path="/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/wmSM.h"
+            ex="true"
+            overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
+      </item>
       <C32>
         <property key="additional-warnings" value="false"/>
         <property key="addresss-attribute-use" value="false"/>
