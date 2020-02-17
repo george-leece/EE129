@@ -2,50 +2,46 @@
 /** Descriptive File Name
 
   @Company
-    Company Name
+    Smart Slug Bin
 
   @File Name
-    filename.h
+    wmSM.h
 
   @Summary
-    Brief description of the file.
+ Contains the Waste Management level state machine of Smart Slug Bin
 
   @Description
-    Describe the purpose of this file.
+ 
+ * 
  */
 /* ************************************************************************** */
-
+#include "configure.h"
 #ifndef _WMSM_H    /* Guard against multiple inclusion */
 #define _WMSM_H
 
-#include "configure.h"
+/**
+  @Function
+    SSB runwmSM(SSB wm);
 
+  @Summary
+    This is the Waste Management level of the state machine.
 
-    /**
-      @Function
-        void runwmSM(void);
+  @Description
+ The Waste management level runs through 5 states:
+    CLASSIFY | CONTAMINATION | RECYCLE | TRASH
+    <p>
+ CLASSIFY:
+    <p>
+ CONTAMINATION:
+    <p>
+ RECYCLE:
+    <p>
+ TRASH:
+   
+ */
+SSB runwmSM(SSB wm);
 
-      @Summary
-        This is the top level of the state machine.
-
-      @Description
-     The top level runs through 3 states: IDLE | WAIT | ACTIVE
-        <p>
-     IDLE: The bin will be operating at minimal power in order to conserve 
-           energy. The bin will transition into WAIT if an ssb.userEvent happens
-           from the proximity sensor.
-        <p>
-     WAIT: The bin has been activated by a ssb.userEvent which will cause the
-           bin to power up and in preparation for an ssb.itemEvent. The bin will
-           return to IDLE if it times out. An ssb.itemEvent will transition the
-           the bin into ACTIVE.
-        <p>
-     ACTIVE: The bin will enter wmSM upon transition from WAIT state. Bin will
-           transition back into WAIT after the ssb.item has been consumed by 
-           trashing or recycling the item.
-     */
-    void runTopSM(SSB ssb);
-
+void updateOLEDWM(SSB wm);
 #endif /* _WMSM_H */
 
 /* *****************************************************************************

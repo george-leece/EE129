@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c
+SOURCEFILES_QUOTED_IF_SPACED=/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.c /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/wmSM.c /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/lmrSM.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1806984808/main.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1806984808/main.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/1806984808/main.o ${OBJECTDIR}/_ext/1806984808/TopSM.o ${OBJECTDIR}/_ext/1806984808/wmSM.o ${OBJECTDIR}/_ext/1806984808/lmrSM.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/1806984808/main.o.d ${OBJECTDIR}/_ext/1806984808/TopSM.o.d ${OBJECTDIR}/_ext/1806984808/wmSM.o.d ${OBJECTDIR}/_ext/1806984808/lmrSM.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/_ext/1806984808/main.o
+OBJECTFILES=${OBJECTDIR}/_ext/1806984808/main.o ${OBJECTDIR}/_ext/1806984808/TopSM.o ${OBJECTDIR}/_ext/1806984808/wmSM.o ${OBJECTDIR}/_ext/1806984808/lmrSM.o
 
 # Source Files
-SOURCEFILES=/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c
+SOURCEFILES=/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.c /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/wmSM.c /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/lmrSM.c
 
 
 
@@ -113,12 +113,48 @@ ${OBJECTDIR}/_ext/1806984808/main.o: /home/gleece/SSB/EE129/stateMachine/SSB-Sim
 	@${RM} ${OBJECTDIR}/_ext/1806984808/main.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1806984808/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/1806984808/main.o.d" -o ${OBJECTDIR}/_ext/1806984808/main.o /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
 	
+${OBJECTDIR}/_ext/1806984808/TopSM.o: /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1806984808" 
+	@${RM} ${OBJECTDIR}/_ext/1806984808/TopSM.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1806984808/TopSM.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1806984808/TopSM.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/1806984808/TopSM.o.d" -o ${OBJECTDIR}/_ext/1806984808/TopSM.o /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/1806984808/wmSM.o: /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/wmSM.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1806984808" 
+	@${RM} ${OBJECTDIR}/_ext/1806984808/wmSM.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1806984808/wmSM.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1806984808/wmSM.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/1806984808/wmSM.o.d" -o ${OBJECTDIR}/_ext/1806984808/wmSM.o /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/wmSM.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/1806984808/lmrSM.o: /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/lmrSM.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1806984808" 
+	@${RM} ${OBJECTDIR}/_ext/1806984808/lmrSM.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1806984808/lmrSM.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1806984808/lmrSM.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/1806984808/lmrSM.o.d" -o ${OBJECTDIR}/_ext/1806984808/lmrSM.o /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/lmrSM.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
 else
 ${OBJECTDIR}/_ext/1806984808/main.o: /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/_ext/1806984808" 
 	@${RM} ${OBJECTDIR}/_ext/1806984808/main.o.d 
 	@${RM} ${OBJECTDIR}/_ext/1806984808/main.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1806984808/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/1806984808/main.o.d" -o ${OBJECTDIR}/_ext/1806984808/main.o /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/1806984808/TopSM.o: /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1806984808" 
+	@${RM} ${OBJECTDIR}/_ext/1806984808/TopSM.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1806984808/TopSM.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1806984808/TopSM.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/1806984808/TopSM.o.d" -o ${OBJECTDIR}/_ext/1806984808/TopSM.o /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/1806984808/wmSM.o: /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/wmSM.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1806984808" 
+	@${RM} ${OBJECTDIR}/_ext/1806984808/wmSM.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1806984808/wmSM.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1806984808/wmSM.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/1806984808/wmSM.o.d" -o ${OBJECTDIR}/_ext/1806984808/wmSM.o /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/wmSM.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
+	
+${OBJECTDIR}/_ext/1806984808/lmrSM.o: /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/lmrSM.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1806984808" 
+	@${RM} ${OBJECTDIR}/_ext/1806984808/lmrSM.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1806984808/lmrSM.o 
+	@${FIXDEPS} "${OBJECTDIR}/_ext/1806984808/lmrSM.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -I"." -I"/home/gleece/Desktop/ECE167/include" -I"/home/gleece/Desktop/ECE167/src" -MMD -MF "${OBJECTDIR}/_ext/1806984808/lmrSM.o.d" -o ${OBJECTDIR}/_ext/1806984808/lmrSM.o /home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/lmrSM.c    -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)  -mdfp=${DFP_DIR}
 	
 endif
 

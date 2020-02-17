@@ -19,8 +19,10 @@
  * 
  */
 /* ************************************************************************** */
-
 #include "TopSM.h"
+#include "wmSM.h"
+#include "lmrSM.h"
+
 /** 
   @Function
     void runTopSM(void);
@@ -31,46 +33,77 @@
   @Remarks
     Refer to the TopSM.h header for function usage details.
  */
-SSB runTopSM(SSB ssb)
+SSB runTopSM(SSB top)
 {
-    switch (ssb.topState) {
+    switch (top.topState) {
     case TOPINIT:
-        ssb.topState=IDLE;
-        updateOLEDTop(ssb);
+        top.topState = IDLE;
+        updateOLEDTop(top);
         break;
     case IDLE:
-        if (ssb.button == BUTTON_EVENT_4DOWN) {
-            ssb.topState = WAIT;
-            ssb.waitTimeStart = ssb.globalTime;
-            ssb.button = BUTTON_EVENT_NONE;
+        if (top.button == BUTTON_EVENT_4DOWN) {
+            top.topState = WAIT;
+            top.waitTimeStart = top.globalTime;
+            top.button = BUTTON_EVENT_NONE;
         }
-        updateOLEDTop(ssb);
+        updateOLEDTop(top);
         break;
     case WAIT:
-        if (ssb.globalTime - ssb.waitTimeStart == WAIT_TIMEOUT) {
-            ssb.topState = IDLE;
-            updateOLEDTop(ssb);
-        } else if (ssb.button == BUTTON_EVENT_3DOWN) {
-            ssb.topState = ACTIVE;
-            ssb.button = BUTTON_EVENT_NONE;
-//            updateOLEDTop(top);
+        if (top.globalTime - top.waitTimeStart == WAIT_TIMEOUT) {
+            top.topState = IDLE;
+            updateOLEDTop(top);
+        } else if (top.button == BUTTON_EVENT_3DOWN) {
+            top.topState = ACTIVE;
+            top.button = BUTTON_EVENT_NONE;
         }
         break;
     case ACTIVE:
-        if (ssb.event == NO_ITEM) {
-            updateOLEDTop(ssb);
-            ssb.topState = WAIT;
-            ssb.event=FALSE;
-            ssb.waitTimeStart = ssb.globalTime;
+        if (top.event == NO_ITEM) {
+            top.topState = WAIT;
+            top.event = FALSE;
+            top.waitTimeStart = top.globalTime;
+            updateOLEDTop(top);
         }
-//        ssb.button = FALSE;
-//        ssb.wmState=WMINIT;
-//        ssb.buttonpress = top.globalTime;
-        //        else if(ssb.item)
-//                updateOLEDTop(ssb);
-//        if(ssb.button){
-            runwmSm();
-        
+        else {
+            top = runwmSM(top);
+        }
+        break;
+    default:
+        break;
+    }
+    return top;
+}
+
+/** 
+  @Function
+    SSB updateOLEDTop(SSB top);
+
+  @Summary
+    
+
+  @Remarks
+    
+ */
+void updateOLEDTop(SSB top)
+{
+    switch (top.topState) {
+    case IDLE:
+        sprintf(display, "Top Level\nState: IDLE");
+        OledClear(OLED_COLOR_BLACK); // clears the OLED to remove any lingering characters from previous prints
+        OledDrawString(display);
+        OledUpdate(); // prints the new string
+        break;
+    case WAIT: //
+        sprintf(display, "Top Level\nState: WAITING");
+        OledClear(OLED_COLOR_BLACK); // Removes any lingering characters
+        OledDrawString(display);
+        OledUpdate(); // Prints the new OLED display
+        break;
+    case ACTIVE: // 
+        sprintf(display, "Top Level\nState: ACTIVE");
+        OledClear(OLED_COLOR_BLACK); //Removes any lingering characters
+        OledDrawString(display);
+        OledUpdate(); // Prints the new OLED display
         break;
     }
 }

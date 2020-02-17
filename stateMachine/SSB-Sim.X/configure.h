@@ -102,6 +102,8 @@ typedef struct {
     //    uint32_t
 } SSB;
 
+char display[100]; // used to print on the OLED
+
 #endif /* _CONFIGURE_H */
 /* *****************************************************************************
  End of File

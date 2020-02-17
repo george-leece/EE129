@@ -14,6 +14,7 @@
       <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.h</itemPath>
       <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/configure.h</itemPath>
       <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/wmSM.h</itemPath>
+      <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/lmrSM.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -25,6 +26,8 @@
       <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/main.c</itemPath>
       <itemPath>helloworld.c</itemPath>
       <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.c</itemPath>
+      <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/wmSM.c</itemPath>
+      <itemPath>/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/lmrSM.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -78,15 +81,43 @@
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
       </makeCustomizationType>
       <item path="/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.c"
-            ex="true"
+            ex="false"
             overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
       </item>
       <item path="/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/TopSM.h"
-            ex="true"
+            ex="false"
             overriding="false">
+        <C32>
+        </C32>
+        <C32-AR>
+        </C32-AR>
+        <C32-AS>
+        </C32-AS>
+        <C32-CO>
+        </C32-CO>
+        <C32-LD>
+        </C32-LD>
+        <C32CPP>
+        </C32CPP>
+        <C32Global>
+        </C32Global>
       </item>
       <item path="/home/gleece/SSB/EE129/stateMachine/SSB-Sim.X/wmSM.h"
-            ex="true"
+            ex="false"
             overriding="false">
         <C32>
         </C32>
@@ -272,6 +303,7 @@
         <property key="UART1" value="true"/>
         <property key="UART2" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

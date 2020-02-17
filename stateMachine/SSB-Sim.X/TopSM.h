@@ -47,7 +47,9 @@
            transition back into WAIT after the ssb.item has been consumed by 
            trashing or recycling the item.
      */
-    SSB runTopSM(SSB ssb);
+    SSB runTopSM(SSB top);
+    
+    void updateOLEDTop(SSB top);
 #endif /* _TOPSM_H */
 
 /* *****************************************************************************
